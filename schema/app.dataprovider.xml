@@ -10,4 +10,50 @@
         <DataElement name="name" type="string"/>
     </DataProvider>
 
+    <DataProvider name="TippList">
+        <DataElement name="event" type="string" />
+        <DataElement name="data" type="Tipp[]" />
+    </DataProvider>
+
+    <DataProvider name="Tipp">
+        <DataElement name="matchId" type="string" />
+        <DataElement name="user" type="string" />
+        <DataElement name="tipDatetime" type="string" />
+        <DataElement name="tipTeam1" type="int" allownull="true" />
+        <DataElement name="tipTeam2" type="int" allownull="true" />
+    </DataProvider>
+
+    <DataProvider name="MatchList">
+        <DataElement name="event" type="string" />
+        <DataElement name="data" type="Match[]" />
+    </DataProvider>
+
+    <DataProvider name="Match">
+        <DataElement name="matchId" type="string" />
+        <DataElement name="team1" type="string" />
+        <DataElement name="team2" type="string" />
+        <DataElement name="scoreTeam1" type="int" allownull="true" />
+        <DataElement name="scoreTeam2" type="int" allownull="true" />
+    </DataProvider>
+
+    <DataProvider name="Calculation">
+            <DataElement name="matchId" type="string" />
+            <DataElement name="user" type="string" />
+            <DataElement name="score" type="int" />
+            <DataElement name="tipTeam1" type="int" allownull="true" />
+            <DataElement name="tipTeam2" type="int" allownull="true" />
+    </DataProvider>
+
+    <DataProvider name="CalculationList">
+        <DataElement name="event" type="string" />
+        <DataElement name="data" type="Calculation[]" />
+    </DataProvider>
+
+    <DataProvider name="Result">
+        <DataElement name="scoreTeam1" type="int" allownull="true" />
+        <DataElement name="scoreTeam2" type="int" allownull="true" />
+        <DataElement name="tipTeam1" type="int" allownull="true" />
+        <DataElement name="tipTeam2" type="int" allownull="true" />
+    </DataProvider>
+
 </DataProviders>
