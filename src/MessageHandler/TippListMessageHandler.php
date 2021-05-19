@@ -2,7 +2,9 @@
 
 namespace App\MessageHandler;
 
+use App\Controller\CalculationListController;
 use App\DataTransferObject\CalculationListDataProvider;
+use App\Persistence\CalculationListConfig;
 use App\Service\Redis\RedisService;
 
 class TippListMessageHandler
@@ -20,9 +22,9 @@ class TippListMessageHandler
     public function __invoke(CalculationListDataProvider $message)
     {
         try {
-            dump($message);
-            // saveToDatabase
-//            $this->redisService->set((string)$message->getIdent(), json_encode($message->toArray(), JSON_THROW_ON_ERROR));
+//            dump($message);
+            $calculationListController = new CalculationListController();
+            $calculationListController->saveList(CalculationListConfig::TIPP_LIST_NAME, json_encode($message));
         } catch (\Throwable $e) {
             dump($e);
         }

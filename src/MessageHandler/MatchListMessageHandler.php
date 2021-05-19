@@ -2,7 +2,9 @@
 
 namespace App\MessageHandler;
 
+use App\Controller\CalculationListController;
 use App\DataTransferObject\TestDataProvider;
+use App\Persistence\CalculationListConfig;
 use App\Service\Redis\RedisService;
 
 class MatchListMessageHandler
@@ -20,9 +22,18 @@ class MatchListMessageHandler
     public function __invoke(TestDataProvider $message)
     {
         try {
-            dump($message);
-            //TODO: Save to database and return calculate score
-            $this->redisService->set((string)$message->getIdent(), json_encode($message->toArray(), JSON_THROW_ON_ERROR));
+//            dump($message);
+            $calculationListController = new CalculationListController();
+            $calculationListController->saveList(CalculationListConfig::MATCH_LIST_NAME, json_encode($message));
+
+            $calculationListController->calculateList();
+
+            $this->redisService->set(
+                (string)$message->getIdent(),
+                json_encode(
+                    $calculationListController->getList(CalculationListConfig::CALC_LIST_NAME),
+                    JSON_THROW_ON_ERROR)
+            );
         } catch (\Throwable $e) {
             dump($e);
         }
