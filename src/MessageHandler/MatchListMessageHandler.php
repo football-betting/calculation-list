@@ -29,10 +29,8 @@ class MatchListMessageHandler
             $calculationListController->calculateList();
 
             $this->redisService->set(
-                (string)$message->getIdent(),
-                json_encode(
-                    $calculationListController->getList(CalculationListConfig::CALC_LIST_NAME),
-                    JSON_THROW_ON_ERROR)
+                (string)$message->getEvent(),
+                $calculationListController->getList(CalculationListConfig::CALC_LIST_NAME)
             );
         } catch (\Throwable $e) {
             dump($e);
