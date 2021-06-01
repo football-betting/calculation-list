@@ -3,6 +3,7 @@
 namespace App\MessageHandler;
 
 use App\Controller\CalculationListController;
+use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\TestDataProvider;
 use App\Persistence\CalculationListConfig;
 use App\Service\Redis\RedisService;
@@ -19,7 +20,7 @@ class MatchListMessageHandler
         $this->redisService = $redisService;
     }
 
-    public function __invoke(TestDataProvider $message)
+    public function __invoke(MatchListDataProvider $message)
     {
         try {
             $calculationListController = new CalculationListController();
