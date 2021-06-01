@@ -22,7 +22,6 @@ class MatchListMessageHandler
     public function __invoke(TestDataProvider $message)
     {
         try {
-//            dump($message);
             $calculationListController = new CalculationListController();
             $calculationListController->saveList(CalculationListConfig::MATCH_LIST_NAME, json_encode($message));
 

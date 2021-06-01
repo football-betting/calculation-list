@@ -7,7 +7,7 @@ use App\DataTransferObject\CalculationListDataProvider;
 use App\Persistence\CalculationListConfig;
 use App\Service\Redis\RedisService;
 
-class TippListMessageHandler
+class TipListMessageHandler
 {
     private RedisService $redisService;
 
@@ -24,7 +24,7 @@ class TippListMessageHandler
         try {
 //            dump($message);
             $calculationListController = new CalculationListController();
-            $calculationListController->saveList(CalculationListConfig::TIPP_LIST_NAME, json_encode($message));
+            $calculationListController->saveList(CalculationListConfig::TIP_LIST_NAME, json_encode($message));
         } catch (\Throwable $e) {
             dump($e);
         }

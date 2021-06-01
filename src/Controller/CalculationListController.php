@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Business\CacheListFacade;
+use App\DataTransferObject\MatchListDataProvider;
+use App\DataTransferObject\TippListDataProvider;
 use App\Persistence\CalculationListConfig;
 use App\Service\CalculationListService;
 
@@ -22,17 +24,22 @@ class CalculationListController
         $this->cacheListFacade = new CacheListFacade();
     }
 
-    /**
-     * @param $matchList
-     * @param $tippList
-     */
     public function calculateList()
     {
-        $matchList = $this->cacheListFacade->getList(CalculationListConfig::MATCH_LIST_NAME);
-        $tippList =  $this->cacheListFacade->getList(CalculationListConfig::TIPP_LIST_NAME);
+        $matchList = $this->cacheListFacade->getList(CalculationListConfig::MATCH_LIST_NAME)
+            ?? (new MatchListDataProvider())->setEvent(CalculationListConfig::MATCH_LIST_EVENT_NAME);
+        $tipList =  $this->cacheListFacade->getList(CalculationListConfig::TIP_LIST_NAME)
+            ?? (new TippListDataProvider())->setEvent(CalculationListConfig::TIP_LIST_EVENT_NAME);
 
+        $calList = $this->calcService->calculateList(
+            json_decode($matchList),
+            json_decode($tipList)
+        );
 
-        $this->calcService->calculateList($matchList, $tippList);
+        $this->saveList(
+            CalculationListConfig::CALC_LIST_NAME,
+            json_encode($calList, true)
+        );
     }
 
     /**
