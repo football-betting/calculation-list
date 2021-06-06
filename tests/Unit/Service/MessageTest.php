@@ -3,7 +3,7 @@
 namespace App\Tests\Unit\Service;
 
 use App\DataTransferObject\TestDataProvider;
-use App\Service\Message;
+use App\Calculation\Message;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;

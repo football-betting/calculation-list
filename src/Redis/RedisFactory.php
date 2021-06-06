@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Service\Redis;
+namespace App\Calculation\Redis;
 
 use Predis\Client;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;

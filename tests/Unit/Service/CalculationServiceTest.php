@@ -4,11 +4,11 @@ namespace App\Tests\Unit\Service;
 
 use App\DataTransferObject\ResultDataProvider;
 use App\Persistence\CalculationListConfig;
-use App\Service\CalculationService;
-use App\Service\Score\NoWin;
-use App\Service\Score\WinExact;
-use App\Service\Score\WinScoreDiff;
-use App\Service\Score\WinTeam;
+use App\Calculation\CalculationService;
+use App\Calculation\Score\NoWin;
+use App\Calculation\Score\WinExact;
+use App\Calculation\Score\WinScoreDiff;
+use App\Calculation\Score\WinTeam;
 use RuntimeException;
 use PHPUnit\Framework\TestCase;
 

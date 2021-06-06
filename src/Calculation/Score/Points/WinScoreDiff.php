@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
-namespace App\Service\Score;
+namespace App\Calculation\Score\Points;
+
 
 use App\DataTransferObject\ResultDataProvider as Result;
 use App\Persistence\CalculationListConfig;

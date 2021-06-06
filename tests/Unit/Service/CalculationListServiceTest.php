@@ -7,7 +7,7 @@ use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\TippDataProvider;
 use App\DataTransferObject\TippListDataProvider;
 use App\Persistence\CalculationListConfig;
-use App\Service\CalculationListService;
+use App\Calculation\CalculationListService;
 use PHPUnit\Framework\TestCase;
 
 class CalculationListServiceTest extends TestCase

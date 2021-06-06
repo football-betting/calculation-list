@@ -6,14 +6,14 @@ use App\Controller\CalculationListController;
 use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\TestDataProvider;
 use App\Persistence\CalculationListConfig;
-use App\Service\Redis\RedisService;
+use App\Calculation\Redis\RedisService;
 
 class MatchListMessageHandler
 {
     private RedisService $redisService;
 
     /**
-     * @param \App\Service\Redis\RedisService $redisService
+     * @param \App\Calculation\Redis\RedisService $redisService
      */
     public function __construct(RedisService $redisService)
     {

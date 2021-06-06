@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Service\Redis;
+namespace App\Calculation\Redis;
 
 use Predis\Client;
 
@@ -12,7 +12,7 @@ final class RedisService
     private Client $client;
 
     /**
-     * @param \App\Service\Redis\RedisFactory $redisFactory
+     * @param \App\Calculation\Redis\RedisFactory $redisFactory
      */
     public function __construct(RedisFactory $redisFactory)
     {

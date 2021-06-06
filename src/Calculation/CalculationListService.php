@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Service;
+namespace App\Calculation;
 
 use App\DataTransferObject\CalculationDataProvider;
 use App\DataTransferObject\CalculationListDataProvider;
@@ -8,10 +8,10 @@ use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\ResultDataProvider;
 use App\DataTransferObject\TippListDataProvider;
 use App\Persistence\CalculationListConfig;
-use App\Service\Score\NoWin;
-use App\Service\Score\WinExact;
-use App\Service\Score\WinScoreDiff;
-use App\Service\Score\WinTeam;
+use App\Calculation\Score\NoWin;
+use App\Calculation\Score\WinExact;
+use App\Calculation\Score\WinScoreDiff;
+use App\Calculation\Score\WinTeam;
 
 class CalculationListService
 {
@@ -36,7 +36,6 @@ class CalculationListService
     public function calculateList(MatchListDataProvider $matchList, TippListDataProvider $tipList): CalculationListDataProvider
     {
         $calculationList = new CalculationListDataProvider();
-        $calculationList->setEvent(CalculationListConfig::CALC_LIST_EVENT_NAME);
 
         foreach($matchList->getData() as $match)
         {

@@ -6,14 +6,14 @@ use App\Controller\CalculationListController;
 use App\DataTransferObject\CalculationListDataProvider;
 use App\DataTransferObject\TippListDataProvider;
 use App\Persistence\CalculationListConfig;
-use App\Service\Redis\RedisService;
+use App\Calculation\Redis\RedisService;
 
 class TipListMessageHandler
 {
     private RedisService $redisService;
 
     /**
-     * @param \App\Service\Redis\RedisService $redisService
+     * @param \App\Calculation\Redis\RedisService $redisService
      */
     public function __construct(RedisService $redisService)
     {
