@@ -4,7 +4,7 @@ namespace App\Calculation\Score\Points;
 
 
 use App\DataTransferObject\ResultDataProvider as Result;
-use App\Persistence\CalculationListConfig;
+use App\CalculationListConfig;
 
 class WinExact implements ScoreInterface
 {

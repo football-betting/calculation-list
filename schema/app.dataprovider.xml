@@ -39,7 +39,7 @@
     <DataProvider name="Calculation">
             <DataElement name="matchId" type="string" />
             <DataElement name="user" type="string" />
-            <DataElement name="score" type="int" />
+            <DataElement name="score" type="int"/>
             <DataElement name="tipTeam1" type="int" allownull="true" />
             <DataElement name="tipTeam2" type="int" allownull="true" />
     </DataProvider>

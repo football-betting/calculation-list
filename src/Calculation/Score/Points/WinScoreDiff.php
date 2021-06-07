@@ -4,7 +4,7 @@ namespace App\Calculation\Score\Points;
 
 
 use App\DataTransferObject\ResultDataProvider as Result;
-use App\Persistence\CalculationListConfig;
+use App\CalculationListConfig;
 
 class WinScoreDiff implements ScoreInterface
 {
@@ -34,7 +34,7 @@ class WinScoreDiff implements ScoreInterface
      */
     private function checkUserTipped(Result $result): bool
     {
-        return $result->getTipTeam1() !== null && $result->getTipTeam2() !== null;
+        return $result->getTipTeam1() !== null && $result->getTipTeam2() !== null && $result->getScoreTeam1() !== null && $result->getScoreTeam2() !== null;
     }
 
 }

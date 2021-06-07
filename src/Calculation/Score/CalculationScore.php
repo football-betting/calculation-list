@@ -3,6 +3,7 @@
 namespace App\Calculation\Score;
 
 use App\Calculation\Score\Points\ScoreInterface;
+use App\CalculationListConfig;
 use App\DataTransferObject\ResultDataProvider;
 
 final class CalculationScore
@@ -31,7 +32,7 @@ final class CalculationScore
      */
     public function calculatePoints(ResultDataProvider $result): int
     {
-        $calculatedPoints = 0;
+        $calculatedPoints = CalculationListConfig::NO_WIN_TEAM;
 
         foreach ($this->scoreCollections as $collection) {
             if ($collection->check($result) === true) {

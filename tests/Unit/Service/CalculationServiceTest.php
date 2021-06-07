@@ -3,13 +3,11 @@
 namespace App\Tests\Unit\Service;
 
 use App\DataTransferObject\ResultDataProvider;
-use App\Persistence\CalculationListConfig;
-use App\Calculation\CalculationService;
-use App\Calculation\Score\NoWin;
-use App\Calculation\Score\WinExact;
-use App\Calculation\Score\WinScoreDiff;
-use App\Calculation\Score\WinTeam;
-use RuntimeException;
+use App\CalculationListConfig;
+use App\Calculation\Score\CalculationScore;
+use App\Calculation\Score\Points\WinExact;
+use App\Calculation\Score\Points\WinScoreDiff;
+use App\Calculation\Score\Points\WinTeam;
 use PHPUnit\Framework\TestCase;
 
 class CalculationServiceTest extends TestCase
@@ -29,10 +27,9 @@ class CalculationServiceTest extends TestCase
         $secondTeamUserResult,
         $expectedScore
     ) {
-        $calc = new CalculationService(
+        $calc = new CalculationScore(
             new WinExact(),
             new WinTeam(),
-            new NoWin(),
             new WinScoreDiff()
         );
 
@@ -45,18 +42,6 @@ class CalculationServiceTest extends TestCase
         $return = $calc->calculatePoints($result);
 
         $this->assertSame($expectedScore, $return);
-    }
-
-    public function testException()
-    {
-        $this->expectException(RuntimeException::class);
-        $calc = new CalculationService(
-            new \stdClass,
-            new \stdClass
-        );
-
-        $result = new ResultDataProvider(1, 1, 1, 1);
-        $calc->calculatePoints($result);
     }
 
     /**
@@ -75,6 +60,10 @@ class CalculationServiceTest extends TestCase
             [0, 1, null, null, CalculationListConfig::NO_WIN_TEAM],
             [0, 0, null, null, CalculationListConfig::NO_WIN_TEAM],
             [1, 0, null, null, CalculationListConfig::NO_WIN_TEAM],
+
+            [null, null, 1, 0, CalculationListConfig::NO_WIN_TEAM],
+            [null, null, 0, 0, CalculationListConfig::NO_WIN_TEAM],
+            [null, null, 0, 1, CalculationListConfig::NO_WIN_TEAM],
 
             // WIN_EXACT
             [1, 2, 1, 2, CalculationListConfig::WIN_EXACT],
