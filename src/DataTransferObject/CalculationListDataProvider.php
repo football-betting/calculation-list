@@ -97,6 +97,16 @@ final class CalculationListDataProvider extends \Xervice\DataProvider\Business\M
 
 
     /**
+     * @param \App\DataTransferObject\CalculationDataProvider $Data
+     * @return CalculationListDataProvider
+     */
+    public function addData(CalculationDataProvider $Data)
+    {
+        $this->data[] = $Data; return $this;
+    }
+
+
+    /**
      * @return array
      */
     protected function getElements(): array
@@ -121,6 +131,8 @@ final class CalculationListDataProvider extends \Xervice\DataProvider\Business\M
             'is_collection' => true,
             'is_dataprovider' => false,
             'isCamelCase' => false,
+            'singleton' => 'Data',
+            'singleton_type' => '\\App\\DataTransferObject\\CalculationDataProvider',
           ),
         );
     }

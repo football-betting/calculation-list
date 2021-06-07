@@ -42,8 +42,12 @@ final class RedisRepository
      */
     public function getUsersTips(): array
     {
-        $users =  $this->redisService->mget([self::USER . '*']);
-
+        $keys = $this->redisService->getKeys(self::USER . '*');
+        foreach ($keys as $id => $key) {
+            $keys[$id] = str_replace($this->redisService->getPrefix(), '', $key);
+        }
+        $users =  $this->redisService->mget($keys);
+        $users = array_filter($users);
         $tippList = [];
         foreach ($users as $user) {
             $tippListDataProvider = new TippListDataProvider();

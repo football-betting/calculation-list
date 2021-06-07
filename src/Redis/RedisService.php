@@ -6,17 +6,20 @@ use Predis\Client;
 
 final class RedisService
 {
+    private string $prefix;
+
     /**
      * @var \Predis\Client
      */
     private Client $client;
 
     /**
-     * @param \App\Calculation\Redis\RedisFactory $redisFactory
+     * @param \App\Redis\RedisFactory $redisFactory
      */
     public function __construct(RedisFactory $redisFactory)
     {
         $this->client = $redisFactory->getClient();
+        $this->prefix = $redisFactory->getPrefix();
     }
 
     /**
@@ -64,9 +67,21 @@ final class RedisService
     /**
      * @param string $key
      */
-    public function delete(string $key): void
+    public function deleteAll(): void
     {
-        $this->client->del([$key]);
+        $keys = $this->getKeys('*');
+        foreach ($keys as $id => $key) {
+            $keys[$id] = str_replace($this->prefix, '', $key);
+        }
+        $this->client->del($keys);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrefix(): string
+    {
+        return $this->prefix;
     }
 }
 

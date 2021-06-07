@@ -12,7 +12,7 @@
 
     <DataProvider name="TippList">
         <DataElement name="event" type="string" />
-        <DataElement name="data" type="Tipp[]" />
+        <DataElement name="data" type="Tipp[]" singleton="Data"/>
     </DataProvider>
 
     <DataProvider name="Tipp">
@@ -25,7 +25,7 @@
 
     <DataProvider name="MatchList">
         <DataElement name="event" type="string" />
-        <DataElement name="data" type="Match[]" />
+        <DataElement name="data" type="Match[]" singleton="Data"/>
     </DataProvider>
 
     <DataProvider name="Match">
@@ -46,7 +46,7 @@
 
     <DataProvider name="CalculationList">
         <DataElement name="event" type="string" />
-        <DataElement name="data" type="Calculation[]" />
+        <DataElement name="data" type="Calculation[]" singleton="Data"/>
     </DataProvider>
 
     <DataProvider name="Result">

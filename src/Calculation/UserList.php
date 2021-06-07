@@ -25,6 +25,7 @@ class UserList
         $userTips = $this->redisRepository->getUsersTips();
         $games = $this->redisRepository->getGames();
 
+        
     }
 
 

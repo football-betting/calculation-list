@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Persistence;
+namespace App;
 
 class CalculationListConfig
 {
