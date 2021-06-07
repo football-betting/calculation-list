@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\MessageHandler;
+namespace App\Messenger;
 
 use App\Calculation\UserList;
 use App\DataTransferObject\MatchListDataProvider;

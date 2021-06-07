@@ -8,20 +8,30 @@ use App\DataTransferObject\CalculationDataProvider;
 use App\DataTransferObject\CalculationListDataProvider;
 use App\DataTransferObject\ResultDataProvider;
 use App\Redis\RedisRepository;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class UserList
 {
     private CalculationScore $calculationScore;
 
     private RedisRepository $redisRepository;
+    /**
+     * @var \Symfony\Component\Messenger\MessageBusInterface
+     */
+    private MessageBusInterface $messageBus;
 
     /**
      * @param \App\Calculation\Score\CalculationScore $calculationScore
      */
-    public function __construct(CalculationScore $calculationScore, RedisRepository $redisRepository)
+    public function __construct(
+        CalculationScore $calculationScore,
+        RedisRepository $redisRepository,
+        MessageBusInterface $messageBus
+    )
     {
         $this->calculationScore = $calculationScore;
         $this->redisRepository = $redisRepository;
+        $this->messageBus = $messageBus;
     }
 
     public function calculate()
@@ -66,11 +76,7 @@ class UserList
 
                 $calculationList->addData($calculationDataProvider);
             }
-
-
         }
-
+        $this->messageBus->dispatch($calculationList);
     }
-
-
 }

@@ -43,12 +43,12 @@ class CalculationListService
 //            {
 //                if($match->getMatchId() === $userTip->getMatchId()) {
 //                    $calc = new CalculationDataProvider();
-//                    $result = new ResultDataProvider();
-//
-//                    $result->setScoreTeam1($match->getScoreTeam1());
-//                    $result->setScoreTeam2($match->getScoreTeam2());
-//                    $result->setTipTeam1($userTip->getTipTeam1());
-//                    $result->setTipTeam2($userTip->getTipTeam2());
+    //                    $result = new ResultDataProvider();
+    //
+    //                    $result->setScoreTeam1($match->getScoreTeam1());
+    //                    $result->setScoreTeam2($match->getScoreTeam2());
+    //                    $result->setTipTeam1($userTip->getTipTeam1());
+    //                    $result->setTipTeam2($userTip->getTipTeam2());
 //
 //                    $calc->setMatchId($match->getMatchId());
 //                    $calc->setTipTeam1($userTip->getTipTeam1());

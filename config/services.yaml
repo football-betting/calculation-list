@@ -32,6 +32,14 @@ services:
         tags: [console.command]
     ###< Xervice\DataProvider ###
 
-    App\MessageHandler\GameMessageHandler:
+    App\Messenger\GameMessageHandler:
         tags: [messenger.message_handler]
 
+    App\Messenger\UserTipMessageHandler:
+        tags: [ messenger.message_handler ]
+
+    App\Calculation\Score\CalculationScore:
+        arguments:
+            - '@App\Calculation\Score\Points\WinExact'
+            - '@App\Calculation\Score\Points\WinScoreDiff'
+            - '@App\Calculation\Score\Points\WinTeam'
