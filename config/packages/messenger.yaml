@@ -25,4 +25,4 @@ framework:
 
             'App\DataTransferObject\CalculationListDataProvider':
                 - calculation.to.ranking
-                - calculation.to.win.day
+              #  - calculation.to.win.day
