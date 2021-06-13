@@ -27,14 +27,21 @@ class JsonSerializer implements SerializerInterface
             // schema validation
             $tipDataProvider = new MatchListDataProvider();
             $tipDataProvider->fromArray($data['data']);
+            $tipDataProvider->setEvent($data['event']);
 
             return new Envelope($tipDataProvider);
         }
 
         if ($data['event'] === "tip.list.to.calculation") {
             // schema validation
+
+            $info = [];
+            foreach ($data['data'] as $tips) {
+                $info[] = json_decode($tips, true);
+            }
             $tipDataProvider = new TippListDataProvider();
-            $tipDataProvider->fromArray($data['data']);
+            $tipDataProvider->fromArray(['data' => $info]);
+            $tipDataProvider->setEvent($data['event']);
 
             return new Envelope($tipDataProvider);
         }
@@ -78,4 +85,3 @@ class JsonSerializer implements SerializerInterface
     }
 
 }
-
