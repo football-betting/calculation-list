@@ -26,7 +26,7 @@ class JsonSerializer implements SerializerInterface
         if ($data['event'] === "match.to.calculation") {
             // schema validation
             $tipDataProvider = new MatchListDataProvider();
-            $tipDataProvider->fromArray($data);
+            $tipDataProvider->fromArray($data['data']);
 
             return new Envelope($tipDataProvider);
         }
@@ -34,7 +34,7 @@ class JsonSerializer implements SerializerInterface
         if ($data['event'] === "tip.list.to.calculation") {
             // schema validation
             $tipDataProvider = new TippListDataProvider();
-            $tipDataProvider->fromArray($data);
+            $tipDataProvider->fromArray($data['data']);
 
             return new Envelope($tipDataProvider);
         }
