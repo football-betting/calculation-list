@@ -38,8 +38,8 @@ services:
     App\Messenger\UserTipMessageHandler:
         tags: [ messenger.message_handler ]
 
-    App\Calculation\Score\CalculationScore:
+    App\Calculation\MatchPoint\Score\CalculationScore:
         arguments:
-            - '@App\Calculation\Score\Points\WinExact'
-            - '@App\Calculation\Score\Points\WinScoreDiff'
-            - '@App\Calculation\Score\Points\WinTeam'
+            - '@App\Calculation\MatchPoint\Score\Points\WinExact'
+            - '@App\Calculation\MatchPoint\Score\Points\WinScoreDiff'
+            - '@App\Calculation\MatchPoint\Score\Points\WinTeam'

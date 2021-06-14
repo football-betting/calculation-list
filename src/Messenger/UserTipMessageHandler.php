@@ -2,6 +2,7 @@
 
 namespace App\Messenger;
 
+use App\Calculation\CalculationList;
 use App\Calculation\UserList;
 use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\TippListDataProvider;
@@ -10,18 +11,19 @@ use App\Redis\RedisRepository;
 class UserTipMessageHandler
 {
     private RedisRepository $redisRepository;
+
     /**
-     * @var \App\Calculation\UserList
+     * @var \App\Calculation\CalculationList
      */
-    private UserList $userList;
+    private CalculationList $calculationList;
 
     /**
      * @param \App\Redis\RedisRepository $redisRepository
      */
-    public function __construct(RedisRepository $redisRepository, UserList $userList)
+    public function __construct(RedisRepository $redisRepository, CalculationList $calculationList)
     {
         $this->redisRepository = $redisRepository;
-        $this->userList = $userList;
+        $this->calculationList = $calculationList;
     }
 
     public function __invoke(TippListDataProvider $matchListDataProvider)
@@ -37,6 +39,6 @@ class UserTipMessageHandler
         }
 
         $this->redisRepository->saveUserTips($username, $matchListDataProvider);
-        $this->userList->calculate();
+        $this->calculationList->calculate();
     }
 }

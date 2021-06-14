@@ -2,31 +2,32 @@
 
 namespace App\Messenger;
 
-use App\Calculation\UserList;
+use App\Calculation\CalculationList;
 use App\DataTransferObject\MatchListDataProvider;
 use App\Redis\RedisRepository;
 
 class GameMessageHandler
 {
     private RedisRepository $redisRepository;
+
     /**
-     * @var \App\Calculation\UserList
+     * @var \App\Calculation\CalculationList
      */
-    private UserList $userList;
+    private CalculationList $calculationList;
 
     /**
      * @param \App\Redis\RedisRepository $redisRepository
-     * @param \App\Calculation\UserList $userList
+     * @param \App\Calculation\CalculationList $calculationList
      */
-    public function __construct(RedisRepository $redisRepository, UserList $userList)
+    public function __construct(RedisRepository $redisRepository, CalculationList $calculationList)
     {
         $this->redisRepository = $redisRepository;
-        $this->userList = $userList;
+        $this->calculationList = $calculationList;
     }
 
     public function __invoke(MatchListDataProvider $matchListDataProvider)
     {
         $this->redisRepository->saveGames($matchListDataProvider);
-        $this->userList->calculate();
+        $this->calculationList->calculate();
     }
 }

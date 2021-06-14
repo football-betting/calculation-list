@@ -2,8 +2,7 @@
 
 namespace App\Tests\Integration\Calculation;
 
-use App\Calculation\UserList;
-use App\DataTransferObject\CalculationListDataProvider;
+use App\Calculation\MatchPoint\MatchPointList;
 use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\TippListDataProvider;
 use App\Redis\RedisRepository;
@@ -13,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class UserListTest extends KernelTestCase
 {
-    private ?UserList $userList;
+    private ?MatchPointList $userList;
     private ?Connection $entityManager;
 
     private ?RedisRepository $redisRepository;
@@ -27,7 +26,7 @@ class UserListTest extends KernelTestCase
             ->get('doctrine.dbal.default_connection');
 
         $this->redisRepository = self::$container->get(RedisRepository::class);
-        $this->userList = self::$container->get(UserList::class);
+        $this->userList = self::$container->get(MatchPointList::class);
     }
 
     protected function tearDown(): void
@@ -44,8 +43,8 @@ class UserListTest extends KernelTestCase
 
     public function test()
     {
-        $this->saveDemoData();
-        $calculation = $this->userList->calculate();
+        $matchListDataProvider = $this->saveDemoData();
+        $calculation = $this->userList->calculate($matchListDataProvider);
 
         $tips = $calculation->getData();
         self::assertCount(10, $tips);
@@ -130,7 +129,6 @@ class UserListTest extends KernelTestCase
         self::assertSame(null,$tips[9]->getScoreTeam1());
         self::assertSame(null,$tips[9]->getScoreTeam2());
 
-        var_export($calculation->toArray());
     }
 
     private function getMessageInfo(): array
@@ -140,8 +138,10 @@ class UserListTest extends KernelTestCase
         return $stmt->executeQuery()->fetchAllAssociative();
     }
 
-
-    private function saveDemoData(): void
+    /**
+     * @return \App\DataTransferObject\MatchListDataProvider
+     */
+    private function saveDemoData(): MatchListDataProvider
     {
         $matchListDataProvider = new MatchListDataProvider();
         $matchListDataProvider->fromArray([
@@ -248,5 +248,7 @@ class UserListTest extends KernelTestCase
         ]);
 
         $this->redisRepository->saveUserTips('rockstar', $tipListDataProvider);
+
+        return $matchListDataProvider;
     }
 }

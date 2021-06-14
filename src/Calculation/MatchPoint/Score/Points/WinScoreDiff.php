@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Calculation\Score\Points;
+namespace App\Calculation\MatchPoint\Score\Points;
 
 
 use App\DataTransferObject\ResultDataProvider as Result;

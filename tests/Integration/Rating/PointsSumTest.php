@@ -2,8 +2,8 @@
 
 namespace App\Tests\Integration\Rating;
 
+use App\Calculation\Rating\PointsSum;
 use App\DataTransferObject\CalculationListDataProvider;
-use App\Rating\PointsSum;
 use PHPUnit\Framework\TestCase;
 
 class PointsSumTest extends TestCase

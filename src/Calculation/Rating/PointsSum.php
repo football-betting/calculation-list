@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Rating;
+namespace App\Calculation\Rating;
 
 use App\CalculationListConfig;
 use App\DataTransferObject\CalculationListDataProvider;
@@ -9,7 +9,7 @@ use App\DataTransferObject\UserRatingDataProvider;
 
 class PointsSum
 {
-    public function get(CalculationListDataProvider $calculationListDataProvider)
+    public function get(CalculationListDataProvider $calculationListDataProvider): RatingEventDataProvider
     {
         $calculationDataProviderList = $calculationListDataProvider->getData();
 

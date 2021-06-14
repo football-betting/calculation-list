@@ -2,12 +2,12 @@
 
 namespace App\Tests\Unit\Service;
 
+use App\Calculation\MatchPoint\Score\CalculationScore;
+use App\Calculation\MatchPoint\Score\Points\WinExact;
+use App\Calculation\MatchPoint\Score\Points\WinScoreDiff;
+use App\Calculation\MatchPoint\Score\Points\WinTeam;
 use App\DataTransferObject\ResultDataProvider;
 use App\CalculationListConfig;
-use App\Calculation\Score\CalculationScore;
-use App\Calculation\Score\Points\WinExact;
-use App\Calculation\Score\Points\WinScoreDiff;
-use App\Calculation\Score\Points\WinTeam;
 use PHPUnit\Framework\TestCase;
 
 class CalculationServiceTest extends TestCase

@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace App\Calculation\Score;
+namespace App\Calculation\MatchPoint\Score;
 
-use App\Calculation\Score\Points\ScoreInterface;
+use App\Calculation\MatchPoint\Score\Points\ScoreInterface;
 use App\CalculationListConfig;
 use App\DataTransferObject\ResultDataProvider;
 
 final class CalculationScore
 {
     /**
-     * @var \App\Calculation\Score\Points\ScoreInterface[] $scoreCollections
+     * @var \App\Calculation\MatchPoint\Score\Points\ScoreInterface[] $scoreCollections
      */
     private array $scoreCollections;
 
     /**
-     * @param \App\Calculation\Score\Points\ScoreInterface ...$scoreCollections
+     * @param \App\Calculation\MatchPoint\Score\Points\ScoreInterface ...$scoreCollections
      */
     public function __construct(ScoreInterface...$scoreCollections)
     {
