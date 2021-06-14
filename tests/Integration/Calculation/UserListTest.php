@@ -55,7 +55,7 @@ class UserListTest extends KernelTestCase
         $calculation = new CalculationListDataProvider();
         $calculation->fromArray(json_decode($message['body'], true));
 
-        self::assertSame('calculation.to.ranking', $calculation->getEvent());
+        self::assertSame('calculation.to.app', $calculation->getEvent());
 
         $tips = $calculation->getData();
         self::assertCount(10, $tips);

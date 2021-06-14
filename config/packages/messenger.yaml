@@ -11,7 +11,7 @@ framework:
             # sync: 'sync://'
             match.to.calculation: "%env(MATCH_TO_CALCULATION)%"
             tip.list.to.calculation: "%env(TIP_LIST_TO_CALCULATION)%"
-            calculation.to.rating: "%env(CALCULATION_TO_RANKING)%"
+            calculation.to.app: "%env(CALCULATION_TO_RANKING)%"
             calculation.to.win.day: "%env(CALCULATION_TO_WIN_DAY)%"
         routing:
             'App\DataTransferObject\MatchListDataProvider':
@@ -19,5 +19,5 @@ framework:
             'App\DataTransferObject\TippListDataProvider':
                 - tip.list.to.calculation
             'App\DataTransferObject\CalculationListDataProvider':
-                - calculation.to.rating
-                #- calculation.to.win.day
+                - calculation.to.app
+                - calculation.to.win.day

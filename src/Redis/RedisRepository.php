@@ -46,6 +46,7 @@ final class RedisRepository
         foreach ($keys as $id => $key) {
             $keys[$id] = str_replace($this->redisService->getPrefix(), '', $key);
         }
+
         $users =  $this->redisService->mget($keys);
         $users = array_filter($users);
         $tippList = [];
