@@ -22,6 +22,12 @@ final class CalculationDataProvider extends \Xervice\DataProvider\Business\Model
     /** @var int */
     protected $tipTeam2;
 
+    /** @var int */
+    protected $scoreTeam1;
+
+    /** @var int */
+    protected $scoreTeam2;
+
 
     /**
      * @return string
@@ -229,6 +235,88 @@ final class CalculationDataProvider extends \Xervice\DataProvider\Business\Model
 
 
     /**
+     * @return int
+     */
+    public function getScoreTeam1(): ?int
+    {
+        return $this->scoreTeam1;
+    }
+
+
+    /**
+     * @param int $scoreTeam1
+     * @return CalculationDataProvider
+     */
+    public function setScoreTeam1(?int $scoreTeam1 = null)
+    {
+        $this->scoreTeam1 = $scoreTeam1;
+
+        return $this;
+    }
+
+
+    /**
+     * @return CalculationDataProvider
+     */
+    public function unsetScoreTeam1()
+    {
+        $this->scoreTeam1 = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasScoreTeam1()
+    {
+        return ($this->scoreTeam1 !== null && $this->scoreTeam1 !== []);
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getScoreTeam2(): ?int
+    {
+        return $this->scoreTeam2;
+    }
+
+
+    /**
+     * @param int $scoreTeam2
+     * @return CalculationDataProvider
+     */
+    public function setScoreTeam2(?int $scoreTeam2 = null)
+    {
+        $this->scoreTeam2 = $scoreTeam2;
+
+        return $this;
+    }
+
+
+    /**
+     * @return CalculationDataProvider
+     */
+    public function unsetScoreTeam2()
+    {
+        $this->scoreTeam2 = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasScoreTeam2()
+    {
+        return ($this->scoreTeam2 !== null && $this->scoreTeam2 !== []);
+    }
+
+
+    /**
      * @return array
      */
     protected function getElements(): array
@@ -277,6 +365,26 @@ final class CalculationDataProvider extends \Xervice\DataProvider\Business\Model
           'tipTeam2' =>
           array (
             'name' => 'tipTeam2',
+            'allownull' => true,
+            'default' => '',
+            'type' => 'int',
+            'is_collection' => false,
+            'is_dataprovider' => false,
+            'isCamelCase' => false,
+          ),
+          'scoreTeam1' =>
+          array (
+            'name' => 'scoreTeam1',
+            'allownull' => true,
+            'default' => '',
+            'type' => 'int',
+            'is_collection' => false,
+            'is_dataprovider' => false,
+            'isCamelCase' => false,
+          ),
+          'scoreTeam2' =>
+          array (
+            'name' => 'scoreTeam2',
             'allownull' => true,
             'default' => '',
             'type' => 'int',

@@ -34,7 +34,7 @@ class UserList
         $this->messageBus = $messageBus;
     }
 
-    public function calculate()
+    public function calculate(): CalculationListDataProvider
     {
         $userTips = $this->redisRepository->getUsersTips();
 
@@ -55,21 +55,27 @@ class UserList
                 $calculationDataProvider->setMatchId($game->getMatchId());
                 $calculationDataProvider->setUser($userName);
 
+                $calculationDataProvider->setScoreTeam1($game->getScoreTeam1());
+                $calculationDataProvider->setScoreTeam2($game->getScoreTeam2());
+
                 $score = CalculationListConfig::NO_WIN_TEAM;
 
-                if (isset($userMatchList[$game->getMatchId()]) && $game->getScoreTeam1() !== null && $game->getScoreTeam2() !== null) {
+                if (isset($userMatchList[$game->getMatchId()])) {
                     $userTip = $userMatchList[$game->getMatchId()];
-
-                    $result = new ResultDataProvider();
-                    $result->setScoreTeam1($game->getScoreTeam1());
-                    $result->setScoreTeam2($game->getScoreTeam2());
-                    $result->setTipTeam1($userTip->getTipTeam1());
-                    $result->setTipTeam2($userTip->getTipTeam2());
-
-                    $score = $this->calculationScore->calculatePoints($result);
 
                     $calculationDataProvider->setTipTeam1($userTip->getTipTeam1());
                     $calculationDataProvider->setTipTeam2($userTip->getTipTeam2());
+
+                    if ($game->getScoreTeam1() !== null && $game->getScoreTeam2() !== null && $userTip->getTipTeam1() !== null && $userTip->getTipTeam2() !== null) {
+                        //@toDo i dont need ResultDataProvider, just $calculationDataProvider -> refactor this
+                        $result = new ResultDataProvider();
+                        $result->setScoreTeam1($game->getScoreTeam1());
+                        $result->setScoreTeam2($game->getScoreTeam2());
+                        $result->setTipTeam1($userTip->getTipTeam1());
+                        $result->setTipTeam2($userTip->getTipTeam2());
+
+                        $score = $this->calculationScore->calculatePoints($result);
+                    }
                 }
 
                 $calculationDataProvider->setScore($score);
@@ -77,6 +83,8 @@ class UserList
                 $calculationList->addData($calculationDataProvider);
             }
         }
-        $this->messageBus->dispatch($calculationList);
+
+        return $calculationList;
+//        $this->messageBus->dispatch($calculationList);
     }
 }

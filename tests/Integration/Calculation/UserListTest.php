@@ -45,17 +45,7 @@ class UserListTest extends KernelTestCase
     public function test()
     {
         $this->saveDemoData();
-        $this->userList->calculate();
-
-        $messageInfo = $this->getMessageInfo();
-
-        self::assertCount(2, $messageInfo);
-
-        $message = $messageInfo[0];
-        $calculation = new CalculationListDataProvider();
-        $calculation->fromArray(json_decode($message['body'], true));
-
-        self::assertSame('calculation.to.app', $calculation->getEvent());
+        $calculation = $this->userList->calculate();
 
         $tips = $calculation->getData();
         self::assertCount(10, $tips);
@@ -65,63 +55,80 @@ class UserListTest extends KernelTestCase
         self::assertSame(0,$tips[0]->getScore());
         self::assertSame(null,$tips[0]->getTipTeam1());
         self::assertSame(null,$tips[0]->getTipTeam2());
-
+        self::assertSame(1,$tips[0]->getScoreTeam1());
+        self::assertSame(4,$tips[0]->getScoreTeam2());
 
         self::assertSame('2020-06-16:2100:FR-DE',$tips[1]->getMatchId());
         self::assertSame('ninja',$tips[1]->getUser());
         self::assertSame(4,$tips[1]->getScore());
         self::assertSame(1,$tips[1]->getTipTeam1());
         self::assertSame(4,$tips[1]->getTipTeam2());
+        self::assertSame(1,$tips[1]->getScoreTeam1());
+        self::assertSame(4,$tips[1]->getScoreTeam2());
 
         self::assertSame('2020-06-20:1800:PT-DE',$tips[2]->getMatchId());
         self::assertSame('rockstar',$tips[2]->getUser());
         self::assertSame(0,$tips[2]->getScore());
-        self::assertSame(null,$tips[2]->getTipTeam1());
-        self::assertSame(null,$tips[2]->getTipTeam2());
+        self::assertSame(0,$tips[2]->getTipTeam1());
+        self::assertSame(0,$tips[2]->getTipTeam2());
+        self::assertSame(null,$tips[2]->getScoreTeam1());
+        self::assertSame(null,$tips[2]->getScoreTeam2());
 
         self::assertSame('2020-06-20:1800:PT-DE',$tips[3]->getMatchId());
         self::assertSame('ninja',$tips[3]->getUser());
         self::assertSame(0,$tips[3]->getScore());
-        self::assertSame(null,$tips[3]->getTipTeam1());
-        self::assertSame(null,$tips[3]->getTipTeam2());
+        self::assertSame(2,$tips[3]->getTipTeam1());
+        self::assertSame(1,$tips[3]->getTipTeam2());
+        self::assertSame(null,$tips[3]->getScoreTeam1());
+        self::assertSame(null,$tips[3]->getScoreTeam2());
 
         self::assertSame('2020-06-22:1800:PT-FR',$tips[4]->getMatchId());
         self::assertSame('rockstar',$tips[4]->getUser());
         self::assertSame(0,$tips[4]->getScore());
         self::assertSame(2,$tips[4]->getTipTeam1());
         self::assertSame(1,$tips[4]->getTipTeam2());
+        self::assertSame(1,$tips[4]->getScoreTeam1());
+        self::assertSame(4,$tips[4]->getScoreTeam2());
 
         self::assertSame('2020-06-22:1800:PT-FR',$tips[5]->getMatchId());
         self::assertSame('ninja',$tips[5]->getUser());
         self::assertSame(2,$tips[5]->getScore());
         self::assertSame(0,$tips[5]->getTipTeam1());
         self::assertSame(3,$tips[5]->getTipTeam2());
+        self::assertSame(1,$tips[5]->getScoreTeam1());
+        self::assertSame(4,$tips[5]->getScoreTeam2());
 
         self::assertSame('2020-06-24:1800:PL-RU',$tips[6]->getMatchId());
         self::assertSame('rockstar',$tips[6]->getUser());
         self::assertSame(1,$tips[6]->getScore());
         self::assertSame(2,$tips[6]->getTipTeam1());
         self::assertSame(0,$tips[6]->getTipTeam2());
+        self::assertSame(1,$tips[6]->getScoreTeam1());
+        self::assertSame(0,$tips[6]->getScoreTeam2());
 
         self::assertSame('2020-06-24:1800:PL-RU',$tips[7]->getMatchId());
         self::assertSame('ninja',$tips[7]->getUser());
         self::assertSame(0,$tips[7]->getScore());
         self::assertSame(null,$tips[7]->getTipTeam1());
         self::assertSame(null,$tips[7]->getTipTeam2());
+        self::assertSame(1,$tips[7]->getScoreTeam1());
+        self::assertSame(0,$tips[7]->getScoreTeam2());
 
         self::assertSame('2020-06-25:1800:MA-DE',$tips[8]->getMatchId());
         self::assertSame('rockstar',$tips[8]->getUser());
         self::assertSame(0,$tips[8]->getScore());
         self::assertSame(null,$tips[8]->getTipTeam1());
         self::assertSame(null,$tips[8]->getTipTeam2());
+        self::assertSame(null,$tips[8]->getScoreTeam1());
+        self::assertSame(null,$tips[8]->getScoreTeam2());
 
         self::assertSame('2020-06-25:1800:MA-DE',$tips[9]->getMatchId());
         self::assertSame('ninja',$tips[9]->getUser());
         self::assertSame(0,$tips[9]->getScore());
         self::assertSame(null,$tips[9]->getTipTeam1());
         self::assertSame(null,$tips[9]->getTipTeam2());
-
-        self::assertSame(json_decode($messageInfo[0]['body'], true)['data'], json_decode($messageInfo[1]['body'], true)['data']);
+        self::assertSame(null,$tips[9]->getScoreTeam1());
+        self::assertSame(null,$tips[9]->getScoreTeam2());
     }
 
     private function getMessageInfo(): array

@@ -37,11 +37,13 @@
     </DataProvider>
 
     <DataProvider name="Calculation">
-            <DataElement name="matchId" type="string" />
-            <DataElement name="user" type="string" />
-            <DataElement name="score" type="int"/>
-            <DataElement name="tipTeam1" type="int" allownull="true" />
-            <DataElement name="tipTeam2" type="int" allownull="true" />
+        <DataElement name="matchId" type="string" />
+        <DataElement name="user" type="string" />
+        <DataElement name="score" type="int"/>
+        <DataElement name="tipTeam1" type="int" allownull="true" />
+        <DataElement name="tipTeam2" type="int" allownull="true" />
+        <DataElement name="scoreTeam1" type="int" allownull="true" />
+        <DataElement name="scoreTeam2" type="int" allownull="true" />
     </DataProvider>
 
     <DataProvider name="CalculationList">
@@ -55,5 +57,13 @@
         <DataElement name="tipTeam1" type="int" allownull="true" />
         <DataElement name="tipTeam2" type="int" allownull="true" />
     </DataProvider>
+
+    <DataProvider name="UserRating">
+        <DataElement name="name" type="string"/>
+        <DataElement name="position" type="int"/>
+        <DataElement name="scoreSum" type="int"/>
+        <DataElement name="tips" type="Calculation[]"/>
+    </DataProvider>
+
 
 </DataProviders>
