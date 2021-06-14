@@ -58,11 +58,19 @@
         <DataElement name="tipTeam2" type="int" allownull="true" />
     </DataProvider>
 
+    <DataProvider name="RatingEvent">
+        <DataElement name="games" type="Match[]" singleton="Game" />
+        <DataElement name="users" type="UserRating[]" singleton="User" />
+    </DataProvider>
+
     <DataProvider name="UserRating">
         <DataElement name="name" type="string"/>
         <DataElement name="position" type="int"/>
         <DataElement name="scoreSum" type="int"/>
-        <DataElement name="tips" type="Calculation[]"/>
+        <DataElement name="sumWinExact" type="int"/>
+        <DataElement name="sumScoreDiff" type="int"/>
+        <DataElement name="sumTeam" type="int"/>
+        <DataElement name="tips" type="Calculation[]" singleton="Tip"/>
     </DataProvider>
 
 

@@ -129,6 +129,8 @@ class UserListTest extends KernelTestCase
         self::assertSame(null,$tips[9]->getTipTeam2());
         self::assertSame(null,$tips[9]->getScoreTeam1());
         self::assertSame(null,$tips[9]->getScoreTeam2());
+
+        var_export($calculation->toArray());
     }
 
     private function getMessageInfo(): array
