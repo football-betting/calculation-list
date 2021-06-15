@@ -5,6 +5,8 @@ namespace App\Calculation;
 use App\Calculation\MatchPoint\MatchPointList;
 use App\Calculation\Position\Position;
 use App\Calculation\Rating\PointsSum;
+use App\Calculation\Sorting\Games;
+use App\Calculation\Sorting\UserTips;
 use App\Redis\RedisRepository;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -27,13 +29,23 @@ class CalculationList
      * @var \App\Calculation\Position\Position
      */
     private Position $position;
+    /**
+     * @var \App\Calculation\Sorting\Games
+     */
+    private Games $games;
+    /**
+     * @var \App\Calculation\Sorting\UserTips
+     */
+    private UserTips $userTips;
 
     public function __construct(
         RedisRepository $redisRepository,
         MatchPointList $matchPointList,
         MessageBusInterface $messageBus,
         PointsSum $pointsSum,
-        Position $position
+        Position $position,
+        Games $games,
+        UserTips $userTips
     )
     {
         $this->redisRepository = $redisRepository;
@@ -42,6 +54,8 @@ class CalculationList
         $this->pointsSum = $pointsSum;
 
         $this->position = $position;
+        $this->games = $games;
+        $this->userTips = $userTips;
     }
 
     public function calculate()
@@ -53,6 +67,10 @@ class CalculationList
         $ratingEventDataProvider = $this->position->point($ratingEventDataProvider);
 
         $ratingEventDataProvider->setGames($games->getData());
+
+        $ratingEventDataProvider = $this->games->sort($ratingEventDataProvider);
+
+        $this->userTips->sort($ratingEventDataProvider);
 
 
     }
