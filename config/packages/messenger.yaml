@@ -20,4 +20,4 @@ framework:
                 - tip.list.to.calculation
             'App\DataTransferObject\CalculationListDataProvider':
                 - calculation.to.app
-                - calculation.to.win.day
+#                - calculation.to.win.day

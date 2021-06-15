@@ -7,6 +7,8 @@ use App\Calculation\Position\Position;
 use App\Calculation\Rating\PointsSum;
 use App\Calculation\Sorting\Games;
 use App\Calculation\Sorting\UserTips;
+use App\DataTransferObject\MatchListDataProvider;
+use App\DataTransferObject\RatingEventDataProvider;
 use App\Redis\RedisRepository;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -61,6 +63,18 @@ class CalculationList
     public function calculate()
     {
         $games = $this->redisRepository->getGames();
+        $fullRatingTables = $this->getRatingDataProviderByGames($games);
+
+        $this->messageBus->dispatch($fullRatingTables);
+    }
+
+    /**
+     * @param \App\DataTransferObject\MatchListDataProvider $games
+     *
+     * @return \App\DataTransferObject\RatingEventDataProvider
+     */
+    private function getRatingDataProviderByGames(MatchListDataProvider $games): RatingEventDataProvider
+    {
         $calculationListDataProvider = $this->matchPointList->calculate($games);
 
         $ratingEventDataProvider = $this->pointsSum->get($calculationListDataProvider);
@@ -71,7 +85,6 @@ class CalculationList
         $ratingEventDataProvider = $this->games->sort($ratingEventDataProvider);
 
         $this->userTips->sort($ratingEventDataProvider);
-
-
+        return $ratingEventDataProvider;
     }
 }
