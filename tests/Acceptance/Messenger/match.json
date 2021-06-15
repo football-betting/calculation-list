@@ -1,0 +1,34 @@
+{
+  "event": "match.to.calculation",
+  "data": [
+    {
+      "matchId": "2021-06-21:2100:RU-DK",
+      "team1": "RU",
+      "team2": "DK"
+    },
+    {
+      "matchId": "2021-06-13:2100:NL-UA",
+      "team1": "NL",
+      "team2": "UA",
+      "scoreTeam1": 3,
+      "scoreTeam2": 2
+    },
+    {
+      "matchId": "2021-06-23:2100:PT-FR",
+      "team1": "PT",
+      "team2": "FR"
+    },
+    {
+      "matchId": "2021-06-13:1500:EN-HR",
+      "team1": "EN",
+      "team2": "HR",
+      "scoreTeam1": 1,
+      "scoreTeam2": 0
+    },
+    {
+      "matchId": "2021-06-15:1800:HU-PT",
+      "team1": "HU",
+      "team2": "PT"
+    }
+  ]
+}

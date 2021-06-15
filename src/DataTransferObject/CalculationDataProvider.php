@@ -16,6 +16,12 @@ final class CalculationDataProvider extends \Xervice\DataProvider\Business\Model
     /** @var int */
     protected $score;
 
+    /** @var string */
+    protected $team1;
+
+    /** @var string */
+    protected $team2;
+
     /** @var int */
     protected $tipTeam1;
 
@@ -149,6 +155,88 @@ final class CalculationDataProvider extends \Xervice\DataProvider\Business\Model
     public function hasScore()
     {
         return ($this->score !== null && $this->score !== []);
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getTeam1(): string
+    {
+        return $this->team1;
+    }
+
+
+    /**
+     * @param string $team1
+     * @return CalculationDataProvider
+     */
+    public function setTeam1(string $team1)
+    {
+        $this->team1 = $team1;
+
+        return $this;
+    }
+
+
+    /**
+     * @return CalculationDataProvider
+     */
+    public function unsetTeam1()
+    {
+        $this->team1 = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasTeam1()
+    {
+        return ($this->team1 !== null && $this->team1 !== []);
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getTeam2(): string
+    {
+        return $this->team2;
+    }
+
+
+    /**
+     * @param string $team2
+     * @return CalculationDataProvider
+     */
+    public function setTeam2(string $team2)
+    {
+        $this->team2 = $team2;
+
+        return $this;
+    }
+
+
+    /**
+     * @return CalculationDataProvider
+     */
+    public function unsetTeam2()
+    {
+        $this->team2 = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasTeam2()
+    {
+        return ($this->team2 !== null && $this->team2 !== []);
     }
 
 
@@ -348,6 +436,26 @@ final class CalculationDataProvider extends \Xervice\DataProvider\Business\Model
             'allownull' => false,
             'default' => '',
             'type' => 'int',
+            'is_collection' => false,
+            'is_dataprovider' => false,
+            'isCamelCase' => false,
+          ),
+          'team1' =>
+          array (
+            'name' => 'team1',
+            'allownull' => false,
+            'default' => '',
+            'type' => 'string',
+            'is_collection' => false,
+            'is_dataprovider' => false,
+            'isCamelCase' => false,
+          ),
+          'team2' =>
+          array (
+            'name' => 'team2',
+            'allownull' => false,
+            'default' => '',
+            'type' => 'string',
             'is_collection' => false,
             'is_dataprovider' => false,
             'isCamelCase' => false,

@@ -56,6 +56,8 @@ class UserListTest extends KernelTestCase
         self::assertSame(null,$tips[0]->getTipTeam2());
         self::assertSame(1,$tips[0]->getScoreTeam1());
         self::assertSame(4,$tips[0]->getScoreTeam2());
+        self::assertSame('FR',$tips[0]->getTeam1());
+        self::assertSame('DE',$tips[0]->getTeam2());
 
         self::assertSame('2020-06-16:2100:FR-DE',$tips[1]->getMatchId());
         self::assertSame('ninja',$tips[1]->getUser());
@@ -64,6 +66,8 @@ class UserListTest extends KernelTestCase
         self::assertSame(4,$tips[1]->getTipTeam2());
         self::assertSame(1,$tips[1]->getScoreTeam1());
         self::assertSame(4,$tips[1]->getScoreTeam2());
+        self::assertSame('FR',$tips[1]->getTeam1());
+        self::assertSame('DE',$tips[1]->getTeam2());
 
         self::assertSame('2020-06-20:1800:PT-DE',$tips[2]->getMatchId());
         self::assertSame('rockstar',$tips[2]->getUser());
@@ -120,6 +124,8 @@ class UserListTest extends KernelTestCase
         self::assertSame(null,$tips[8]->getTipTeam2());
         self::assertSame(null,$tips[8]->getScoreTeam1());
         self::assertSame(null,$tips[8]->getScoreTeam2());
+        self::assertSame('MA',$tips[8]->getTeam1());
+        self::assertSame('DE',$tips[8]->getTeam2());
 
         self::assertSame('2020-06-25:1800:MA-DE',$tips[9]->getMatchId());
         self::assertSame('ninja',$tips[9]->getUser());
@@ -128,6 +134,9 @@ class UserListTest extends KernelTestCase
         self::assertSame(null,$tips[9]->getTipTeam2());
         self::assertSame(null,$tips[9]->getScoreTeam1());
         self::assertSame(null,$tips[9]->getScoreTeam2());
+        self::assertSame('MA',$tips[9]->getTeam1());
+        self::assertSame('DE',$tips[9]->getTeam2());
+
 
     }
 
@@ -180,8 +189,8 @@ class UserListTest extends KernelTestCase
                 ],
                 [
                     'matchId' => '2020-06-25:1800:MA-DE',
-                    'team1' => 'PL',
-                    'team2' => 'RU',
+                    'team1' => 'MA',
+                    'team2' => 'DE',
                     'matchDatetime' => '2020-06-25 18:00',
                     'scoreTeam1' => null,
                     'scoreTeam2' => null,

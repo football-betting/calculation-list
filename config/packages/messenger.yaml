@@ -18,6 +18,6 @@ framework:
                 - match.to.calculation
             'App\DataTransferObject\TippListDataProvider':
                 - tip.list.to.calculation
-            'App\DataTransferObject\CalculationListDataProvider':
+            'App\DataTransferObject\RatingEventDataProvider':
                 - calculation.to.app
 #                - calculation.to.win.day

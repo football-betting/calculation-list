@@ -47,14 +47,18 @@ final class RedisRepository
             $keys[$id] = str_replace($this->redisService->getPrefix(), '', $key);
         }
 
-        $users =  $this->redisService->mget($keys);
-        $users = array_filter($users);
         $tippList = [];
-        foreach ($users as $user) {
-            $tippListDataProvider = new TippListDataProvider();
-            $tippListDataProvider->fromArray(json_decode($user, true));
 
-            $tippList[] = $tippListDataProvider;
+        if(count($keys) > 0) {
+            $users =  $this->redisService->mget($keys);
+            $users = array_filter($users);
+
+            foreach ($users as $user) {
+                $tippListDataProvider = new TippListDataProvider();
+                $tippListDataProvider->fromArray(json_decode($user, true));
+
+                $tippList[] = $tippListDataProvider;
+            }
         }
 
         return $tippList;

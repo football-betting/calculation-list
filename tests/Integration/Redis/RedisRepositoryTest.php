@@ -94,21 +94,21 @@ class RedisRepositoryTest extends KernelTestCase
                     'user' => 'ninja',
                     'tipDatetime' => '2020-06-12 14:36',
                     'tipTeam1' => 2,
-                    'tipTeam2' => 3
+                    'tipTeam2' => 3,
                 ],
                 [
                     'matchId' => '2020-06-25:1800:MA-DE',
                     'user' => 'ninja',
                     'tipDatetime' => '2020-06-12 14:36',
                     'tipTeam1' => 2,
-                    'tipTeam2' => 1
+                    'tipTeam2' => 1,
                 ],
                 [
                     'matchId' => '2020-06-20:1800:PT-DE',
                     'user' => 'ninja',
                     'tipDatetime' => '2020-06-12 14:38',
                     'tipTeam1' => 0,
-                    'tipTeam2' => 4
+                    'tipTeam2' => 4,
                 ],
             ],
         ]);
@@ -142,21 +142,21 @@ class RedisRepositoryTest extends KernelTestCase
                     'user' => 'ninja',
                     'tipDatetime' => '2020-06-12 14:36',
                     'tipTeam1' => 2,
-                    'tipTeam2' => 3
+                    'tipTeam2' => 3,
                 ],
                 [
                     'matchId' => '2020-06-25:1800:MA-DE',
                     'user' => 'ninja',
                     'tipDatetime' => '2020-06-12 14:36',
                     'tipTeam1' => 2,
-                    'tipTeam2' => 1
+                    'tipTeam2' => 1,
                 ],
                 [
                     'matchId' => '2020-06-20:1800:PT-DE',
                     'user' => 'ninja',
                     'tipDatetime' => '2020-06-12 14:38',
                     'tipTeam1' => 0,
-                    'tipTeam2' => 4
+                    'tipTeam2' => 4,
                 ],
             ],
         ]);
@@ -171,15 +171,15 @@ class RedisRepositoryTest extends KernelTestCase
                     'user' => 'rockstar',
                     'tipDatetime' => '2020-06-12 15:36',
                     'tipTeam1' => 1,
-                    'tipTeam2' => 5
+                    'tipTeam2' => 5,
                 ],
                 [
                     'matchId' => '2020-06-25:1800:PL-EN',
                     'user' => 'rockstar',
                     'tipDatetime' => '2020-06-12 14:36',
                     'tipTeam1' => 0,
-                    'tipTeam2' => 2
-                ]
+                    'tipTeam2' => 2,
+                ],
             ],
         ]);
 
@@ -212,5 +212,12 @@ class RedisRepositoryTest extends KernelTestCase
             self::assertSame($expectedMatchDataProvider->getTipDatetime(), $matchDataProviderRedis->getTipDatetime());
             self::assertSame($expectedMatchDataProvider->getTipTeam2(), $matchDataProviderRedis->getTipTeam2());
         }
+    }
+
+    public function testGetUsersTipsWhenRedisHaveNoUser()
+    {
+        $userListDataProviderRedis = $this->redisRepository->getUsersTips();
+
+        self::assertCount(0, $userListDataProviderRedis);
     }
 }

@@ -73,7 +73,10 @@ final class RedisService
         foreach ($keys as $id => $key) {
             $keys[$id] = str_replace($this->prefix, '', $key);
         }
-        $this->client->del($keys);
+
+        if(count($keys) > 0) {
+            $this->client->del($keys);
+        }
     }
 
     /**

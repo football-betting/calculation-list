@@ -47,6 +47,9 @@ class MatchPointList
                 $calculationDataProvider->setScoreTeam1($game->getScoreTeam1());
                 $calculationDataProvider->setScoreTeam2($game->getScoreTeam2());
 
+                $calculationDataProvider->setTeam1($game->getTeam1());
+                $calculationDataProvider->setTeam2($game->getTeam2());
+
                 $score = CalculationListConfig::NO_WIN_TEAM;
 
                 if (isset($userMatchList[$game->getMatchId()])) {
