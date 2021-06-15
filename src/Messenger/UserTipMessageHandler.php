@@ -3,8 +3,6 @@
 namespace App\Messenger;
 
 use App\Calculation\CalculationList;
-use App\Calculation\UserList;
-use App\DataTransferObject\MatchListDataProvider;
 use App\DataTransferObject\TippListDataProvider;
 use App\Redis\RedisRepository;
 

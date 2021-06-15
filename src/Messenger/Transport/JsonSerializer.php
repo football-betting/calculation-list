@@ -34,13 +34,8 @@ class JsonSerializer implements SerializerInterface
 
         if ($data['event'] === "tip.list.to.calculation") {
             // schema validation
-
-            $info = [];
-            foreach ($data['data'] as $tips) {
-                $info[] = json_decode($tips, true);
-            }
             $tipDataProvider = new TippListDataProvider();
-            $tipDataProvider->fromArray(['data' => $info]);
+            $tipDataProvider->fromArray($data);
             $tipDataProvider->setEvent($data['event']);
 
             return new Envelope($tipDataProvider);

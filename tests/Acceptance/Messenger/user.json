@@ -1,0 +1,26 @@
+{
+  "event": "tip.list.to.calculation",
+  "data": [
+    {
+      "matchId": "2021-06-14:1500:SC-CZ",
+      "user": "rafalwesolowski",
+      "tipDatetime": "2021-06-14 00:26",
+      "tipTeam1": 3,
+      "tipTeam2": 1
+    },
+    {
+      "matchId": "2021-06-15:1800:HU-PT",
+      "user": "rafalwesolowski",
+      "tipDatetime": "2021-06-15 16:18",
+      "tipTeam1": 3,
+      "tipTeam2": 2
+    },
+    {
+      "matchId": "2021-06-14:1800:PL-SK",
+      "user": "rafalwesolowski",
+      "tipDatetime": "2021-06-14 06:42",
+      "tipTeam1": 6,
+      "tipTeam2": 6
+    }
+  ]
+}
