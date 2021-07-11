@@ -48,6 +48,7 @@ class PointsSum
             $userRatingDataProvider->setSumScoreDiff($sumScoreDiff);
             $userRatingDataProvider->setSumTeam($sumTeam);
             $userRatingDataProvider->setSumWinExact($sumWinExact);
+            $userRatingDataProvider->setExtraPoint(0);
 
             $ratingEventDataProvider->addUser($userRatingDataProvider);
         }

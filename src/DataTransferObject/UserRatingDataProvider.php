@@ -25,6 +25,9 @@ final class UserRatingDataProvider extends \Xervice\DataProvider\Business\Model\
     /** @var int */
     protected $sumTeam;
 
+    /** @var int */
+    protected $extraPoint;
+
     /** @var \App\DataTransferObject\CalculationDataProvider[] */
     protected $tips = [];
 
@@ -276,6 +279,47 @@ final class UserRatingDataProvider extends \Xervice\DataProvider\Business\Model\
 
 
     /**
+     * @return int
+     */
+    public function getExtraPoint(): int
+    {
+        return $this->extraPoint;
+    }
+
+
+    /**
+     * @param int $extraPoint
+     * @return UserRatingDataProvider
+     */
+    public function setExtraPoint(int $extraPoint)
+    {
+        $this->extraPoint = $extraPoint;
+
+        return $this;
+    }
+
+
+    /**
+     * @return UserRatingDataProvider
+     */
+    public function unsetExtraPoint()
+    {
+        $this->extraPoint = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function hasExtraPoint()
+    {
+        return ($this->extraPoint !== null && $this->extraPoint !== []);
+    }
+
+
+    /**
      * @return \App\DataTransferObject\CalculationDataProvider[]
      */
     public function getTips(): array
@@ -385,6 +429,16 @@ final class UserRatingDataProvider extends \Xervice\DataProvider\Business\Model\
           'sumTeam' =>
           array (
             'name' => 'sumTeam',
+            'allownull' => false,
+            'default' => '',
+            'type' => 'int',
+            'is_collection' => false,
+            'is_dataprovider' => false,
+            'isCamelCase' => false,
+          ),
+          'extraPoint' =>
+          array (
+            'name' => 'extraPoint',
             'allownull' => false,
             'default' => '',
             'type' => 'int',

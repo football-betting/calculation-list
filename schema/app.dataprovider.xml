@@ -72,6 +72,7 @@
         <DataElement name="sumWinExact" type="int"/>
         <DataElement name="sumScoreDiff" type="int"/>
         <DataElement name="sumTeam" type="int"/>
+        <DataElement name="extraPoint" type="int"/>
         <DataElement name="tips" type="Calculation[]" singleton="Tip"/>
     </DataProvider>
 

@@ -5,6 +5,7 @@ namespace App\Calculation;
 use App\Calculation\MatchPoint\MatchPointList;
 use App\Calculation\Position\Position;
 use App\Calculation\Rating\PointsSum;
+use App\Calculation\Rating\Winners;
 use App\Calculation\Sorting\Games;
 use App\Calculation\Sorting\UserTips;
 use App\DataTransferObject\MatchListDataProvider;
@@ -40,6 +41,11 @@ class CalculationList
      */
     private UserTips $userTips;
 
+    /**
+     * @var \App\Calculation\Rating\Winners
+     */
+    private Winners $winners;
+
     public function __construct(
         RedisRepository $redisRepository,
         MatchPointList $matchPointList,
@@ -47,7 +53,8 @@ class CalculationList
         PointsSum $pointsSum,
         Position $position,
         Games $games,
-        UserTips $userTips
+        UserTips $userTips,
+        Winners $winners
     )
     {
         $this->redisRepository = $redisRepository;
@@ -58,6 +65,7 @@ class CalculationList
         $this->position = $position;
         $this->games = $games;
         $this->userTips = $userTips;
+        $this->winners = $winners;
     }
 
     public function calculate()
@@ -78,6 +86,8 @@ class CalculationList
         $calculationListDataProvider = $this->matchPointList->calculate($games);
 
         $ratingEventDataProvider = $this->pointsSum->get($calculationListDataProvider);
+        $ratingEventDataProvider = $this->winners->get($ratingEventDataProvider, $games);
+
         $ratingEventDataProvider = $this->position->point($ratingEventDataProvider);
 
         $ratingEventDataProvider->setGames($games->getData());
