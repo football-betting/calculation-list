@@ -188,11 +188,11 @@ class RedisRepositoryTest extends KernelTestCase
         $userListDataProviderRedis = $this->redisRepository->getUsersTips();
 
         self::assertCount(2, $userListDataProviderRedis);
-        self::assertCount(count($tipListDataProvider->getData()), $userListDataProviderRedis[1]->getData());
-        self::assertCount(count($tipListDataProvider2->getData()), $userListDataProviderRedis[0]->getData());
+        self::assertCount(count($tipListDataProvider->getData()), $userListDataProviderRedis[0]->getData());
+        self::assertCount(count($tipListDataProvider2->getData()), $userListDataProviderRedis[1]->getData());
 
         $expectedMatchListDataProvider = $tipListDataProvider->getData();
-        foreach ($userListDataProviderRedis[1]->getData() as $key => $matchDataProviderRedis) {
+        foreach ($userListDataProviderRedis[0]->getData() as $key => $matchDataProviderRedis) {
 
             $expectedMatchDataProvider = $expectedMatchListDataProvider[$key];
             self::assertSame($expectedMatchDataProvider->getMatchId(), $matchDataProviderRedis->getMatchId());
@@ -203,7 +203,7 @@ class RedisRepositoryTest extends KernelTestCase
         }
 
         $expectedMatchListDataProvider = $tipListDataProvider2->getData();
-        foreach ($userListDataProviderRedis[0]->getData() as $key => $matchDataProviderRedis) {
+        foreach ($userListDataProviderRedis[1]->getData() as $key => $matchDataProviderRedis) {
 
             $expectedMatchDataProvider = $expectedMatchListDataProvider[$key];
             self::assertSame($expectedMatchDataProvider->getMatchId(), $matchDataProviderRedis->getMatchId());
